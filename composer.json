@@ -1,0 +1,54 @@
+{
+    "name": "omoba/laravel-searchable",
+    "description": "Declarative search, sort, and filter scopes for Eloquent models — with relationship traversal.",
+    "keywords": ["laravel", "eloquent", "search", "filter", "sort", "query-builder"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omobolaji Bello",
+            "email": "omobello07@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/database": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.5|^11.0",
+        "larastan/larastan": "^2.9|^3.0",
+        "laravel/pint": "^1.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omoba\\LaravelSearchable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omoba\\LaravelSearchable\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Omoba\\LaravelSearchable\\LaravelSearchableServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "stan": "vendor/bin/phpstan analyse",
+        "pint": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

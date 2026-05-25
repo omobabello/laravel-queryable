@@ -1,0 +1,11 @@
+/vendor/
+composer.lock
+.phpunit.cache/
+.phpunit.result.cache
+/build/
+.idea/
+.vscode/
+.DS_Store
+STATUS.md
+release.md
+CLAUDE.md
