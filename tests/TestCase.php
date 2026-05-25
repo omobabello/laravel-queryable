@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests;
+namespace Omoba\LaravelQueryable\Tests;
 
 use Illuminate\Foundation\Application;
-use Omoba\LaravelSearchable\LaravelSearchableServiceProvider;
+use Omoba\LaravelQueryable\LaravelQueryableServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -24,7 +24,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            LaravelSearchableServiceProvider::class,
+            LaravelQueryableServiceProvider::class,
         ];
     }
 

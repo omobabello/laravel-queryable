@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Exceptions;
+namespace Omoba\LaravelQueryable\Exceptions;
 
-final class InvalidOperator extends SearchableException {}
+final class InvalidOperator extends QueryableException {}

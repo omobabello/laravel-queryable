@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Operators;
+namespace Omoba\LaravelQueryable\Operators;
 
-use Omoba\LaravelSearchable\Exceptions\InvalidOperator;
+use Omoba\LaravelQueryable\Exceptions\InvalidOperator;
 
 enum FilterOperator: string
 {

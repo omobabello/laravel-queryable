@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Concerns;
+namespace Omoba\LaravelQueryable\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Omoba\LaravelSearchable\Support\RelationPath;
+use Omoba\LaravelQueryable\Support\RelationPath;
 
 /**
  * Adds `search` and `searchEncrypted` scopes.

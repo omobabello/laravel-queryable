@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Unit;
+namespace Omoba\LaravelQueryable\Tests\Unit;
 
-use Omoba\LaravelSearchable\Support\SortSpec;
+use Omoba\LaravelQueryable\Support\SortSpec;
 use PHPUnit\Framework\TestCase;
 
 final class SortSpecTest extends TestCase

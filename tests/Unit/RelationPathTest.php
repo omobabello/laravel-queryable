@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Unit;
+namespace Omoba\LaravelQueryable\Tests\Unit;
 
-use Omoba\LaravelSearchable\Support\RelationPath;
+use Omoba\LaravelQueryable\Support\RelationPath;
 use PHPUnit\Framework\TestCase;
 
 final class RelationPathTest extends TestCase

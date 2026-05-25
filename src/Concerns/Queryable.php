@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Concerns;
+namespace Omoba\LaravelQueryable\Concerns;
 
 /**
  * Convenience trait composing {@see Searchable}, {@see Filterable}, and {@see Sortable}.

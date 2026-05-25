@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Concerns;
+namespace Omoba\LaravelQueryable\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Omoba\LaravelSearchable\Exceptions\InvalidFilterField;
-use Omoba\LaravelSearchable\Operators\FilterOperator;
-use Omoba\LaravelSearchable\Operators\OperatorResolver;
-use Omoba\LaravelSearchable\Support\RelationPath;
+use Omoba\LaravelQueryable\Exceptions\InvalidFilterField;
+use Omoba\LaravelQueryable\Operators\FilterOperator;
+use Omoba\LaravelQueryable\Operators\OperatorResolver;
+use Omoba\LaravelQueryable\Support\RelationPath;
 
 /**
  * Adds `filter` and `filterHaving` scopes.
@@ -126,6 +126,6 @@ trait Filterable
             return true;
         }
 
-        return (bool) config('searchable.strict', true);
+        return (bool) config('queryable.strict', true);
     }
 }

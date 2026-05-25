@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Feature;
+namespace Omoba\LaravelQueryable\Tests\Feature;
 
-use Omoba\LaravelSearchable\Tests\Models\Company;
-use Omoba\LaravelSearchable\Tests\Models\User;
-use Omoba\LaravelSearchable\Tests\TestCase;
+use Omoba\LaravelQueryable\Tests\Models\Company;
+use Omoba\LaravelQueryable\Tests\Models\User;
+use Omoba\LaravelQueryable\Tests\TestCase;
 
 final class ChainingTest extends TestCase
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Feature;
+namespace Omoba\LaravelQueryable\Tests\Feature;
 
-use Omoba\LaravelSearchable\Exceptions\InvalidFilterField;
-use Omoba\LaravelSearchable\Tests\Models\Company;
-use Omoba\LaravelSearchable\Tests\Models\User;
-use Omoba\LaravelSearchable\Tests\TestCase;
+use Omoba\LaravelQueryable\Exceptions\InvalidFilterField;
+use Omoba\LaravelQueryable\Tests\Models\Company;
+use Omoba\LaravelQueryable\Tests\Models\User;
+use Omoba\LaravelQueryable\Tests\TestCase;
 
 final class FilterableTest extends TestCase
 {
@@ -123,7 +123,7 @@ final class FilterableTest extends TestCase
 
     public function test_unknown_field_is_skipped_in_loose_mode(): void
     {
-        config()->set('searchable.strict', false);
+        config()->set('queryable.strict', false);
         User::create(['name' => 'Alice', 'email' => 'a@example.com']);
 
         $this->assertSame(1, User::filter(['unknown_field' => 'value'])->count());

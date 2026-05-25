@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Exceptions;
+namespace Omoba\LaravelQueryable\Exceptions;
 
-final class InvalidFilterField extends SearchableException
+final class InvalidFilterField extends QueryableException
 {
     public static function notDeclared(string $field, string $model): self
     {

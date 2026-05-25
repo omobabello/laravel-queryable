@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Concerns;
+namespace Omoba\LaravelQueryable\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Omoba\LaravelSearchable\Exceptions\InvalidSortField;
-use Omoba\LaravelSearchable\Support\SortSpec;
+use Omoba\LaravelQueryable\Exceptions\InvalidSortField;
+use Omoba\LaravelQueryable\Support\SortSpec;
 
 /**
  * Adds the `sort` scope.
@@ -64,6 +64,6 @@ trait Sortable
             return true;
         }
 
-        return (bool) config('searchable.strict', true);
+        return (bool) config('queryable.strict', true);
     }
 }

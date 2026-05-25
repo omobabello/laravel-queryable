@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Feature;
+namespace Omoba\LaravelQueryable\Tests\Feature;
 
-use Omoba\LaravelSearchable\Tests\Models\Post;
-use Omoba\LaravelSearchable\Tests\Models\User;
-use Omoba\LaravelSearchable\Tests\TestCase;
+use Omoba\LaravelQueryable\Tests\Models\Post;
+use Omoba\LaravelQueryable\Tests\Models\User;
+use Omoba\LaravelQueryable\Tests\TestCase;
 
 final class HavingTest extends TestCase
 {
@@ -35,7 +35,7 @@ final class HavingTest extends TestCase
 
     public function test_having_skips_unknown_when_loose(): void
     {
-        config()->set('searchable.strict', false);
+        config()->set('queryable.strict', false);
         User::create(['name' => 'Alice', 'email' => 'a@example.com']);
 
         $this->assertSame(1, User::query()->filterHaving(['nope' => 1])->count());

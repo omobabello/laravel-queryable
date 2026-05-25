@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Support;
+namespace Omoba\LaravelQueryable\Support;
 
 /**
  * Parses sort specifications into an ordered list of (field, direction) pairs.

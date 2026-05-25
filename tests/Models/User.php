@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Models;
+namespace Omoba\LaravelQueryable\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Omoba\LaravelSearchable\Concerns\Queryable;
-use Omoba\LaravelSearchable\Operators\FilterOperator;
+use Omoba\LaravelQueryable\Concerns\Queryable;
+use Omoba\LaravelQueryable\Operators\FilterOperator;
 
 class User extends Model
 {

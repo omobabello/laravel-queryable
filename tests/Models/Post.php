@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Tests\Models;
+namespace Omoba\LaravelQueryable\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

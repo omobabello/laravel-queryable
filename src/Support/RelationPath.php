@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Support;
+namespace Omoba\LaravelQueryable\Support;
 
 final class RelationPath
 {

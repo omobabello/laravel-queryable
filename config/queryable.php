@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'strict' => env('SEARCHABLE_STRICT', true),
+    'strict' => env('QUERYABLE_STRICT', true),
 
 ];

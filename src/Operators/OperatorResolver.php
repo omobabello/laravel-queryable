@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omoba\LaravelSearchable\Operators;
+namespace Omoba\LaravelQueryable\Operators;
 
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;

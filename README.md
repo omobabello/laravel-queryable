@@ -1,4 +1,4 @@
-# laravel-searchable
+# laravel-queryable
 
 Declarative `search`, `filter`, and `sort` scopes for Eloquent models — with first-class support for relationship traversal via dot notation.
 
@@ -16,13 +16,13 @@ User::search('john')
 ## Installation
 
 ```bash
-composer require omoba/laravel-searchable
+composer require omoba/laravel-queryable
 ```
 
 The service provider is auto-discovered. Publish the (optional) config:
 
 ```bash
-php artisan vendor:publish --tag=searchable-config
+php artisan vendor:publish --tag=queryable-config
 ```
 
 ## Declaring search/filter/sort on a model
@@ -30,8 +30,8 @@ php artisan vendor:publish --tag=searchable-config
 Add the `Queryable` trait (or pick `Searchable`, `Filterable`, `Sortable` individually) and override the relevant declaration methods.
 
 ```php
-use Omoba\LaravelSearchable\Concerns\Queryable;
-use Omoba\LaravelSearchable\Operators\FilterOperator;
+use Omoba\LaravelQueryable\Concerns\Queryable;
+use Omoba\LaravelQueryable\Operators\FilterOperator;
 
 class User extends Model
 {
@@ -129,7 +129,7 @@ Relationship **sorting** is intentionally not supported in v1 — it requires jo
 
 ## Strict vs loose mode
 
-By default, an unknown filter or sort field throws an exception. Set `searchable.strict` to `false` (or env `SEARCHABLE_STRICT=false`) to silently skip unknown keys — useful for lenient public APIs.
+By default, an unknown filter or sort field throws an exception. Set `queryable.strict` to `false` (or env `QUERYABLE_STRICT=false`) to silently skip unknown keys — useful for lenient public APIs.
 
 ## Chaining with native query methods
 
