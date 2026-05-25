@@ -8,6 +8,7 @@ use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Carbon;
+use Omoba\LaravelQueryable\Support\DatabaseDriver;
 
 /**
  * Applies a FilterOperator to a query builder for a given column and value.
@@ -44,7 +45,7 @@ final class OperatorResolver
 
         match ($operator) {
             FilterOperator::Exact => self::applyExactWhere($query, $column, $value),
-            FilterOperator::Like => $query->where($column, 'like', '%'.((string) $value).'%'),
+            FilterOperator::Like => $query->where($column, DatabaseDriver::likeOperator($query), '%'.((string) $value).'%'),
             FilterOperator::In => $query->whereIn($column, self::toList($value)),
             FilterOperator::Between => self::applyRangeWhere($query, $column, $value, castDate: false),
             FilterOperator::DateRange => self::applyRangeWhere($query, $column, $value, castDate: true),
@@ -80,7 +81,7 @@ final class OperatorResolver
 
         match ($operator) {
             FilterOperator::Exact => self::applyExactHaving($query, $column, $value),
-            FilterOperator::Like => $query->having($column, 'like', '%'.((string) $value).'%'),
+            FilterOperator::Like => $query->having($column, DatabaseDriver::likeOperator($query), '%'.((string) $value).'%'),
             FilterOperator::In => self::applyInHaving($query, $column, self::toList($value)),
             FilterOperator::Between => self::applyRangeHaving($query, $column, $value, castDate: false),
             FilterOperator::DateRange => self::applyRangeHaving($query, $column, $value, castDate: true),

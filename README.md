@@ -78,7 +78,7 @@ All four declaration methods are optional. Returning `[]` (or not defining the m
 
 | Scope                      | Input                                          | Notes                                                            |
 | -------------------------- | ---------------------------------------------- | ---------------------------------------------------------------- |
-| `search(?string $term)`    | string or null                                 | Substring `LIKE %term%` across `searchable()` columns / relations |
+| `search(?string $term)`    | string or null                                 | Case-insensitive substring match across `searchable()` columns / relations (uses `ILIKE` on Postgres, `LIKE` elsewhere) |
 | `searchEncrypted($term)`   | string or null                                 | Exact match against `sha256($term)` over `searchableEncrypted()` |
 | `filter(?array $filters)`  | `['field' => value, …]`                        | Operators driven by `filterable()` map                            |
 | `filterHaving($filters)`   | same shape as `filter`                         | Emits `HAVING` clauses; use after `withCount` / `selectRaw`       |
@@ -91,7 +91,7 @@ All scopes safely no-op on empty/null input.
 | Operator     | Value shape                                | SQL                  |
 | ------------ | ------------------------------------------ | -------------------- |
 | `exact`      | `'foo'` or `'a,b,c'` or `['a','b','c']`    | `=` or `IN (...)`    |
-| `like`       | `'foo'`                                    | `LIKE %foo%`         |
+| `like`       | `'foo'`                                    | `LIKE %foo%` (`ILIKE` on Postgres) |
 | `in`         | `'a,b,c'` or `['a','b','c']`               | `IN (...)`           |
 | `between`    | `['from' => x, 'to' => y]` (any side optional) | `BETWEEN`, `>=`, or `<=` |
 | `date_range` | same as `between`, parsed as Carbon dates  | `BETWEEN`, `>=`, or `<=` |

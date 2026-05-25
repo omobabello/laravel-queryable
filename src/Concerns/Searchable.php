@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Omoba\LaravelQueryable\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Omoba\LaravelQueryable\Support\DatabaseDriver;
 use Omoba\LaravelQueryable\Support\RelationPath;
 
 /**
@@ -58,16 +59,17 @@ trait Searchable
             return $query;
         }
         $like = "%{$term}%";
+        $op = DatabaseDriver::likeOperator($query);
 
-        return $query->where(function (Builder $q) use ($fields, $like): void {
+        return $query->where(function (Builder $q) use ($fields, $like, $op): void {
             foreach ($fields as $field) {
                 $path = RelationPath::parse($field);
                 if ($path->hasRelation()) {
-                    $q->orWhereHas($path->relation, function (Builder $relationQuery) use ($path, $like): void {
-                        $relationQuery->where($path->column, 'like', $like);
+                    $q->orWhereHas($path->relation, function (Builder $relationQuery) use ($path, $like, $op): void {
+                        $relationQuery->where($path->column, $op, $like);
                     });
                 } else {
-                    $q->orWhere($path->column, 'like', $like);
+                    $q->orWhere($path->column, $op, $like);
                 }
             }
         });
