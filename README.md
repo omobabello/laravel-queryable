@@ -50,12 +50,12 @@ class User extends Model
     public function filterable(): array
     {
         return [
-            'name'             => 'like',
-            'email'            => 'exact',
-            'status'           => 'in',
-            'created_at'       => 'date_range',
-            'company.industry' => 'exact',
-            'archived_at'      => 'null',
+            'name'             => FilterOperator::Like,
+            'email'            => FilterOperator:Exact,
+            'status'           => FilterOperator:In,
+            'created_at'       => FilterOperator:DateRange,
+            'company.industry' => FilterOperator:Exact,
+            'archived_at'      => FilterOperator:Null,
             'orders_count'     => FilterOperator::Gte,
         ];
     }
