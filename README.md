@@ -13,6 +13,8 @@ User::search('john')
     ->paginate();
 ```
 
+→ [Full documentation](docs/usage.md)
+
 ## Requirements
 
 - PHP 8.2+
