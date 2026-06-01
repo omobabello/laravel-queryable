@@ -21,10 +21,7 @@ trait Searchable
      *
      * @return array<int, string>
      */
-    public function searchable(): array
-    {
-        return [];
-    }
+    abstract public function searchable(): array;
 
     /**
      * Columns (and dot-notated relation columns) used by `scopeSearchEncrypted`.

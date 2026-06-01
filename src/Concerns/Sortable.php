@@ -25,10 +25,7 @@ trait Sortable
      *
      * @return array<int, string>
      */
-    public function sortable(): array
-    {
-        return [];
-    }
+    abstract public function sortable(): array;
 
     /**
      * @param  Builder<static>  $query

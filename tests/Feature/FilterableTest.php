@@ -6,6 +6,7 @@ namespace Omoba\LaravelQueryable\Tests\Feature;
 
 use Omoba\LaravelQueryable\Exceptions\InvalidFilterField;
 use Omoba\LaravelQueryable\Tests\Models\Company;
+use Omoba\LaravelQueryable\Tests\Models\FlexUser;
 use Omoba\LaravelQueryable\Tests\Models\User;
 use Omoba\LaravelQueryable\Tests\TestCase;
 
@@ -135,5 +136,80 @@ final class FilterableTest extends TestCase
 
         $matches = User::filter(['name' => '', 'email' => null])->pluck('name')->all();
         $this->assertSame(['Alice'], $matches);
+    }
+
+    public function test_auto_infer_exact_for_scalar_value(): void
+    {
+        FlexUser::create(['name' => 'Alice', 'email' => 'a@example.com', 'status' => 'active']);
+        FlexUser::create(['name' => 'Bob', 'email' => 'b@example.com', 'status' => 'active']);
+
+        $matches = FlexUser::filter(['name' => 'Alice'])->pluck('name')->all();
+        $this->assertSame(['Alice'], $matches);
+    }
+
+    public function test_auto_infer_in_for_csv_string(): void
+    {
+        FlexUser::create(['name' => 'A', 'email' => 'a@example.com', 'status' => 'active']);
+        FlexUser::create(['name' => 'B', 'email' => 'b@example.com', 'status' => 'pending']);
+        FlexUser::create(['name' => 'C', 'email' => 'c@example.com', 'status' => 'archived']);
+
+        $matches = FlexUser::filter(['status' => 'active,pending'])->pluck('name')->sort()->values()->all();
+        $this->assertSame(['A', 'B'], $matches);
+    }
+
+    public function test_auto_infer_between_for_from_and_to(): void
+    {
+        $a = FlexUser::create(['name' => 'A', 'email' => 'a@example.com']);
+        $a->forceFill(['created_at' => '2025-03-01 00:00:00'])->save();
+        $b = FlexUser::create(['name' => 'B', 'email' => 'b@example.com']);
+        $b->forceFill(['created_at' => '2025-06-15 00:00:00'])->save();
+        $c = FlexUser::create(['name' => 'C', 'email' => 'c@example.com']);
+        $c->forceFill(['created_at' => '2025-12-01 00:00:00'])->save();
+
+        $matches = FlexUser::filter([
+            'created_at' => ['from' => '2025-04-01', 'to' => '2025-11-01'],
+        ])->pluck('name')->all();
+
+        $this->assertSame(['B'], $matches);
+    }
+
+    public function test_auto_infer_between_from_only(): void
+    {
+        $a = FlexUser::create(['name' => 'A', 'email' => 'a@example.com']);
+        $a->forceFill(['created_at' => '2025-03-01 00:00:00'])->save();
+        $b = FlexUser::create(['name' => 'B', 'email' => 'b@example.com']);
+        $b->forceFill(['created_at' => '2025-09-01 00:00:00'])->save();
+
+        $matches = FlexUser::filter([
+            'created_at' => ['from' => '2025-06-01'],
+        ])->pluck('name')->all();
+
+        $this->assertSame(['B'], $matches);
+    }
+
+    public function test_auto_infer_between_to_only(): void
+    {
+        $a = FlexUser::create(['name' => 'A', 'email' => 'a@example.com']);
+        $a->forceFill(['created_at' => '2025-03-01 00:00:00'])->save();
+        $b = FlexUser::create(['name' => 'B', 'email' => 'b@example.com']);
+        $b->forceFill(['created_at' => '2025-09-01 00:00:00'])->save();
+
+        $matches = FlexUser::filter([
+            'created_at' => ['to' => '2025-06-01'],
+        ])->pluck('name')->all();
+
+        $this->assertSame(['A'], $matches);
+    }
+
+    public function test_auto_and_explicit_operators_can_coexist(): void
+    {
+        FlexUser::create(['name' => 'Alice', 'email' => 'a@example.com', 'status' => 'active']);
+        FlexUser::create(['name' => 'Bob', 'email' => 'b@example.com', 'status' => 'active']);
+        FlexUser::create(['name' => 'Charlie', 'email' => 'c@example.com', 'status' => 'pending']);
+
+        // FlexUser has 'name' as auto-detect (exact) and 'status' as auto-detect (exact)
+        // Both filters applied together
+        $matches = FlexUser::filter(['status' => 'active', 'name' => 'Bob'])->pluck('name')->all();
+        $this->assertSame(['Bob'], $matches);
     }
 }
