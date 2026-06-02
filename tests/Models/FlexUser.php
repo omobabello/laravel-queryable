@@ -15,16 +15,19 @@ class FlexUser extends Model
 
     protected $guarded = [];
 
+    /** @return array<int, string> */
     public function searchable(): array
     {
         return [];
     }
 
+    /** @return array<int, string> */
     public function filterable(): array
     {
         return ['name', 'status', 'created_at'];
     }
 
+    /** @return array<int, string> */
     public function sortable(): array
     {
         return [];

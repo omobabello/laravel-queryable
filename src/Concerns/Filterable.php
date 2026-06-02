@@ -130,7 +130,8 @@ trait Filterable
         $normalized = [];
         foreach ($declared as $key => $value) {
             if (is_int($key)) {
-                $normalized[(string) $value] = null;
+                assert(is_string($value));
+                $normalized[$value] = null;
             } else {
                 $normalized[$key] = $value;
             }
