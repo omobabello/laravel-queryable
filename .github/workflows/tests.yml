@@ -63,6 +63,9 @@ jobs:
             --no-interaction --no-update
 
       - name: Install dependencies
+        # Laravel 10/11 are EOL with unpatched framework advisories; the package still supports them, so CI must be able to install them.
+        env:
+          COMPOSER_NO_SECURITY_BLOCKING: 1
         run: composer update --prefer-dist --no-interaction --no-progress
 
       - name: Run PHPUnit
