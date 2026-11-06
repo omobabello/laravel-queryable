@@ -247,10 +247,8 @@ final class OperatorResolver
         string $operator,
         mixed $value,
     ): void {
-        // Laravel doesn't ship havingNull, so use a raw expression that's still safely parameterised
-        // for the value side. Column comes from the model's declared list, not user input.
         if ($value === null) {
-            $query->havingRaw("{$column} IS ".($operator === '!=' ? 'NOT ' : '').'NULL');
+            $query->havingNull($column, not: $operator === '!=');
 
             return;
         }

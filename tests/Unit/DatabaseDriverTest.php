@@ -33,10 +33,10 @@ final class DatabaseDriverTest extends TestCase
 
     private function builderOnDriver(string $driver): QueryBuilder
     {
-        $connection = $this->createMock(Connection::class);
+        $connection = $this->createStub(Connection::class);
         $connection->method('getDriverName')->willReturn($driver);
 
-        $builder = $this->createMock(QueryBuilder::class);
+        $builder = $this->createStub(QueryBuilder::class);
         $builder->method('getConnection')->willReturn($connection);
 
         return $builder;
